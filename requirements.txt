@@ -1,0 +1,4 @@
+gdata==2.0.18
+gspread==0.2.2
+selenium==2.43.0
+xmltodict==0.9.0

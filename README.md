@@ -1,4 +1,4 @@
-test_automation_base
-====================
+hiplead_functional_tests
+========================
 
-Repo for odesk selenium test
+Repository of automated functional, end to end tests of hiplead proprietary software 

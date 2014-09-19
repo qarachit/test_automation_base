@@ -3,6 +3,7 @@ import logging.config
 import unittest
 
 import gspread
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
@@ -69,11 +70,17 @@ class ContactKeyCreator(unittest.TestCase):
 
         #then wait for task to complete
         #this success alert only becomes visible when task is actually finished.
-        #WARNING I've seen this check for success_div visibility fail. May be too fragile for ci testing?
         success_div = driver.find_element_by_class_name('time_remaining')
-        WebDriverWait(driver, 15).until(
-            EC.visibility_of(success_div)
-        )
+        try:
+            WebDriverWait(driver, 10).until(
+                EC.visibility_of(success_div)
+            )
+        except StaleElementReferenceException as e:
+            #TODO The javascript DOM manipulation that results in StaleElementReferenceException needs to be resolved.
+            success_div = driver.find_element_by_class_name('time_remaining')
+            WebDriverWait(driver, 10).until(
+                EC.visibility_of(success_div)
+            )
 
         #now validate cell value, since we know task has completed.
         e2_val = my_worksheet.acell('E2')

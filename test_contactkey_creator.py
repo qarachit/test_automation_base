@@ -14,6 +14,9 @@ import gdoc_util
 import settings
 
 class ContactKeyCreator(unittest.TestCase):
+    '''
+    Suite of functional tests of the contact key creator functionality.
+    '''
 
     logging.config.dictConfig(settings.LOGGING)
     logger = logging.getLogger(__name__)
@@ -29,6 +32,10 @@ class ContactKeyCreator(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
     def test_contact_key_creator(self):
+        '''
+        Test the simple positive case for creation of a single functioning contact key.
+        :return:
+        '''
         self.logger.info('Starting test_contact_key_creator')
 
         #setup the doc on gdrive first

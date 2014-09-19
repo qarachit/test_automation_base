@@ -12,6 +12,9 @@ import settings
 
 
 class CompanySearch(unittest.TestCase):
+    '''
+    Suite of functional tests of the Company Search 2  functionality
+    '''
 
     logging.config.dictConfig(settings.LOGGING)
     logger = logging.getLogger(__name__)
@@ -27,6 +30,10 @@ class CompanySearch(unittest.TestCase):
         self.assertEqual([], self.verificationErrors)
 
     def test_company_search2(self):
+        '''
+        Simple first test of positive case for searching a single known domain for company details.
+        :return:
+        '''
         driver = self.driver
 
         #shared file
